@@ -3,7 +3,7 @@ from pyexpat.errors import messages
 
 from mysite.database.db import SessionLocal
 from mysite.database.models import UserProfile
-from mysite.database.shema import UserProfileInputSchema,UserProfileOutSchema,UserLoginSchema
+from mysite.database.schema import UserProfileInputSchema,UserProfileOutSchema,UserLoginSchema
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer

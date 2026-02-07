@@ -1,5 +1,5 @@
 from mysite.database.models import SubCategory
-from mysite.database.shema import SubCategoryInputShema, SubCategoryOutShema
+from mysite.database.schema import SubCategoryInputShema, SubCategoryOutShema
 from mysite.database.db import SessionLocal
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException

@@ -1,7 +1,7 @@
 from starlette import status
 
 from mysite.database.models import UserProfile
-from mysite.database.shema import UserProfileInputSchema, UserProfileOutSchema
+from mysite.database.schema import UserProfileInputSchema, UserProfileOutSchema
 from mysite.database.db import SessionLocal
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException

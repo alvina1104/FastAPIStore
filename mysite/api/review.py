@@ -1,5 +1,5 @@
 from mysite.database.models import Review, Product, UserProfile
-from mysite.database.shema import ReviewInputShema, ReviewOutShema
+from mysite.database.schema import ReviewInputShema, ReviewOutShema
 from mysite.database.db import SessionLocal
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException

@@ -1,5 +1,5 @@
 from mysite.database.models import ProductImage, Product
-from mysite.database.shema import ProductImageInputShema, ProductImageOutShema
+from mysite.database.schema import ProductImageInputShema, ProductImageOutShema
 from mysite.database.db import SessionLocal
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException
