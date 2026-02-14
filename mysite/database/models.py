@@ -27,6 +27,22 @@ class UserProfile(Base):
 
     user_review: Mapped[List['Review']] = relationship(back_populates='user',
                                                        cascade='all, delete-orphan')
+    user_token: Mapped[List[RefreshToken]] = relationship(back_populates='token_user',
+                                                          cascade='all, delete-orphan')
+
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+class RefreshToken(Base):
+    __tablename__ = 'refresh_token'
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey('profile.id'))
+    token_user: Mapped[UserProfile] = relationship(UserProfile, back_populates='user_token')
+    token: Mapped[str] = mapped_column(String)
+    created_date: Mapped[DateTime] = mapped_column(DateTime, default=datetime.utcnow())
 
 
 class Category(Base):
@@ -38,6 +54,11 @@ class Category(Base):
 
     subcategories: Mapped[List['SubCategory']] = relationship(back_populates='category',
                                                               cascade='all, delete-orphan')
+    categories: Mapped[List['Product']] = relationship( back_populates='categories',
+                                                        cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f'{self.category_name}'
 
 
 class SubCategory(Base):
@@ -51,11 +72,15 @@ class SubCategory(Base):
 
     category: Mapped[Category] = relationship(Category, back_populates='subcategories')
 
+    def __repr__(self):
+        return f'{self.sub_category_name}'
+
+
+
 class Product(Base):
     __tablename__ = 'product'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True,autoincrement=True)
-    subcategory_id: Mapped[int] = mapped_column(ForeignKey('sub_category.id'))
     product_name: Mapped[str] = mapped_column(String(50))
     price: Mapped[int] = mapped_column(Integer)
     article_number: Mapped[int] = mapped_column(Integer,unique=True)
@@ -69,6 +94,10 @@ class Product(Base):
     product_review:Mapped[List['Review']] = relationship(back_populates='products',
                                                          cascade='all, delete-orphan')
 
+    category_id: Mapped[int] = mapped_column(ForeignKey('category.id'))
+    categories: Mapped[Category] = relationship(Category, back_populates='categories')
+
+    subcategory_id: Mapped[int] = mapped_column(ForeignKey('sub_category.id'))
     subcategory: Mapped[SubCategory] = relationship(back_populates='sub_products')
 
 

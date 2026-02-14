@@ -56,3 +56,4 @@ async def delete_category(category_id: int, db: Session = Depends(get_db)):
     db.delete(category_db)
     db.commit()
     return {'message': 'Категория ийгиликтуу очурулду'}
+
