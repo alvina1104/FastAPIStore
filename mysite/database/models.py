@@ -27,7 +27,7 @@ class UserProfile(Base):
 
     user_review: Mapped[List['Review']] = relationship(back_populates='user',
                                                        cascade='all, delete-orphan')
-    user_token: Mapped[List[RefreshToken]] = relationship(back_populates='token_user',
+    user_token: Mapped[List['RefreshToken']] = relationship(back_populates='token_user',
                                                           cascade='all, delete-orphan')
 
 
